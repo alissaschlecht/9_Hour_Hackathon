@@ -1,5 +1,4 @@
 function init() {
-
   //Canvas
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
@@ -10,19 +9,16 @@ function init() {
   var mousex = mousey = 0;
   var mousedown = false;
   var tooltype = 'draw';
-
   //Mousedown
   $(canvas).on('mousedown', function(e) {
       last_mousex = mousex = parseInt(e.clientX-canvasx);
     last_mousey = mousey = parseInt(e.clientY-canvasy);
       mousedown = true;
   });
-
   //Mouseup
   $(canvas).on('mouseup', function(e) {
       mousedown = false;
   });
-
   //Mousemove
   $(canvas).on('mousemove', function(e) {
       mousex = parseInt(e.clientX-canvasx);
@@ -45,7 +41,6 @@ function init() {
       last_mousex = mousex;
       last_mousey = mousey;
   });
-
   //Use draw|erase
   use_tool = function(tool) {
       tooltype = tool; //update
@@ -53,7 +48,6 @@ function init() {
  
 //=================================END OF CANVAS==================================//
 // RANDOM WORD GENERATOR
-
 var random = ["horse", "door", "song","trip", "backbone", "bomb",
 "round", "treasure", "garbage",
 "park", "pirate", "ski",
@@ -93,22 +87,17 @@ var random = ["horse", "door", "song","trip", "backbone", "bomb",
 "cello", "rain", "clam",
 "pelican", "stingray", "fur",
 "blowfish", "rainbow", "happy"]
-
 function hideAll(){
   $('#word').hide();
   $('.start').hide();
 }
-
 function showWord(){
-
   randomWord = random[Math.floor(Math.random() * random.length)]
-
   $('.showWord').click(function(){
     $('#word').show();
     $('#wordText').html(randomWord);
   });
 }
-
 function hideWord(){
   $('#word').click(function(){
     $('#word').hide();
@@ -116,21 +105,19 @@ function hideWord(){
     $('.showWord').hide();
   })
 }
-
 function start(){
   $('.start').click(function(){
     $('.start').hide();
+    secs = 30;
     timer();
   })
 }
-
+//=================================TIMER=========================//
 var secs =  30;
 var currentSeconds = 0;
-
 function timer(){
-
   Decrement();
-
+  scoreTracker();
   function Decrement() {
       currentMinutes = Math.floor(secs / 60);
       currentSeconds = secs % 60;
@@ -138,49 +125,35 @@ function timer(){
       secs--;
       document.getElementById("timerText").innerHTML = "0:"+currentSeconds;
       if(secs !== -1) setTimeout(Decrement,1000);
-      console.log(currentSeconds);
-      scoreTracker();
+  
   }
 }
-
-var teamOne = null;
-var teamTwo = null;
-
-function getTeamNames(){
-
-  $('#getNames').click(function(){
-
-     teamOne = $('#name1').val();
-     teamTwo = $('#name2').val();
-
+//===============================TEAM SCORES===============================//
+var currentTeam = 0;
+        var teams = [
+        {
+          name: "Team 1",
+          score:0
+        },{
+          name: "Team 2",
+          score:0
+        }
+      ];
+function scoreTracker(){
+    $("#stopTimer").click(function(){
+       // document.getElementById("displayScore").innerHTML = "You scored: " + currentSeconds;
+       teamTurn();
+      secs = 0;
   })
+ 
 }
-
-  var team = 1;
-  function teamTurn(){
-
-    $('#getNames').click(function(){
-
-      if (team === 1){
-        team = 2;
-        $('.teamName').html(teamTwo);
-      }
-      else {
-        team = 1;
-        $('.teamName').html(teamOne);
-      }
-
-    });
-
-  }
-
-
+ function teamTurn(){
+     teams[currentTeam].score++;
+     currentTeam = currentTeam ? 0 : 1;
+     $('#teamName').html(teams[currentTeam].name);
+ }
 hideAll();
 showWord();
 hideWord();
 start();
-getTeamNames();
-teamTurn();
-
-
 }
