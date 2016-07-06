@@ -1,0 +1,127 @@
+* {
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+body{
+  height: 100%;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+
+
+#word {
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.6);
+z-index: 999;
+position: fixed;
+margin: 0 auto;
+top: 0;
+left: 0;
+text-align: center;
+}
+
+.showWord, #stopTimer, #wordText, #stopTimer, #clickToHide, #scoreText, #timerText, #displayScore, .start {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fixed {
+  width: 500px;
+  height: 500px;
+}
+
+
+#timerContainer {
+  height: 200px;
+  text-align: center;
+}
+
+#timerText{
+  font-size: 60px;
+  color: teal;
+}
+
+#scoreContainer {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.totalScores {
+  font-size: 40px;
+}
+
+.span {
+  font-size: 20px;
+}
+
+#displayScore, #stopTimer{
+  font-size: 30px;
+
+}
+
+.leftCont{
+  margin-top: 300px;
+  height: 100%;
+}
+
+.col-md-2{
+  text-align: center;
+  min-height: 100%;
+}
+
+.showWord {
+  width: 100%;
+  height: 100%;
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 40px;
+}
+
+#wordText {
+  font-size: 80px;
+  color: white; 
+}
+#clickToHide {
+  font-size: 30px;
+  color: white;
+}
+
+.start {
+  text-align: center;
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 40px;
+  width: 180px;
+  z-index: 1000;
+}
+
+.totalScores {
+  color: teal;
+}
+
+input {
+  background-color:teal;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border-radius:5px;
+  border:1px solid #ffffff;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  padding:6px 15px;
+  text-decoration:none;
+ }
+ input:hover {
+  background-color:#eb675e;
+ }

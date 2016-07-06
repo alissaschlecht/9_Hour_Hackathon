@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Pictionary</title>
+ <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+ <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="app.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300' rel='stylesheet' type='text/css'>
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body onload="init()">
+ <div id="container" style="text-align: center;">
+
+
+   <div class="col-md-2 leftCont">
+   <div class="showWord" >SHOW WORD</div>
+
+   <div id="word">
+     <div id="wordText">Word</div>
+     <div id="clickToHide">Click to Hide</div>  
+   </div>
+
+
+    <div class="start">START</div>
+
+   <div id="stopTimer">Press spacebar when done</div>
+
+
+  </div>
+ 
+ <div id="drawPad" class="col-md-8" style="text-align: center;">
+   
+    <h1 id="teamName">Team 1</h1>
+    <h2>Your Turn!</h2> 
+
+   <div>
+    <canvas id="canvas" width="600px" height="500" style="border: 1px black solid;"></canvas>
+   </div>
+   <input type="button" value="draw" onclick="use_tool('draw');" />
+   <input type="button" value="erase" onclick="use_tool('erase');" />
+ </div>
+
+ <div class="col-md-2" class="rightCont">
+  <div id="timerContainer">
+  <div id="displayScore"></div>
+     <div id="timerText"></div>
+   </div>
+  <div id="scoreContainer">
+    <div id="scoreText">
+       <span class="span">Team 1 Score: </span><div class="totalScores" id="teamScoreOne"> 0</div>
+       <span class="span">Team 2 Score: </span><div class="totalScores" id="teamScoreTwo">0</div>
+     </div>
+  </div>
+ </div>
+
+</div>
+
+</body>
+</html>
