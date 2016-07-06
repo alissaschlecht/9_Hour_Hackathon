@@ -31,7 +31,7 @@ function init() {
               ctx.lineWidth = 3;
           } else {
               ctx.globalCompositeOperation = 'destination-out';
-              ctx.lineWidth = 10;
+              ctx.lineWidth = 50;
           }
           ctx.moveTo(last_mousex,last_mousey);
           ctx.lineTo(mousex,mousey);
@@ -87,73 +87,111 @@ var random = ["horse", "door", "song","trip", "backbone", "bomb",
 "cello", "rain", "clam",
 "pelican", "stingray", "fur",
 "blowfish", "rainbow", "happy"]
+
+
 function hideAll(){
   $('#word').hide();
   $('.start').hide();
+  $('#stopTimer').hide();
 }
+
+$('.showWord').click(function(){ 
+  showWord(); 
+});
+$('#word').click(function(){ hideWord();   });
+$('.start').click(function(){ start(); })
+
+$('body').keyup(function(e){
+   if(e.keyCode == 32){
+       scoreTracker(); 
+   }
+});
+
 function showWord(){
+
   randomWord = random[Math.floor(Math.random() * random.length)]
-  $('.showWord').click(function(){
     $('#word').show();
     $('#wordText').html(randomWord);
-  });
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 }
+
+
 function hideWord(){
-  $('#word').click(function(){
+
     $('#word').hide();
     $('.start').show();
     $('.showWord').hide();
-  })
+
 }
+
 function start(){
-  $('.start').click(function(){
+  
     $('.start').hide();
+    $('#stopTimer').show();
     secs = 30;
     timer();
-  })
+  
+}
+
+function restart(){
+  $('.showWord').show();
+  $('#stopTimer').hide();
 }
 //=================================TIMER=========================//
-var secs =  30;
+var secs =  0;
 var currentSeconds = 0;
 function timer(){
   Decrement();
-  scoreTracker();
+ 
   function Decrement() {
       currentMinutes = Math.floor(secs / 60);
       currentSeconds = secs % 60;
-      if(currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
+      if(currentSeconds <= 9) currentSeconds =  currentSeconds;
       secs--;
-      document.getElementById("timerText").innerHTML = "0:"+currentSeconds;
+      document.getElementById("timerText").innerHTML = currentSeconds;
       if(secs !== -1) setTimeout(Decrement,1000);
-  
+      
+      if(secs == -1) {
+        restart();  
+      }
   }
 }
 //===============================TEAM SCORES===============================//
 var currentTeam = 0;
-        var teams = [
-        {
-          name: "Team 1",
-          score:0
-        },{
-          name: "Team 2",
-          score:0
-        }
-      ];
+
+var teams = [
+    {
+      name: "Team 1",
+      score:0
+    },{
+      name: "Team 2",
+      score:0
+    }
+  ];
+
 function scoreTracker(){
-    $("#stopTimer").click(function(){
-       // document.getElementById("displayScore").innerHTML = "You scored: " + currentSeconds;
-       teamTurn();
+   
+      $("#displayScore").html("You scored: " + currentSeconds);
       secs = 0;
-  })
+      restart();
+      teamTurn();
  
 }
+
  function teamTurn(){
-     teams[currentTeam].score++;
+
+    teams[currentTeam].score = currentSeconds + teams[currentTeam].score;
      currentTeam = currentTeam ? 0 : 1;
+
+     $('#teamScoreOne').html(teams[0].score);
+     $('#teamScoreTwo').html(teams[1].score);
+
      $('#teamName').html(teams[currentTeam].name);
  }
+
+
+
 hideAll();
-showWord();
-hideWord();
-start();
+
 }
