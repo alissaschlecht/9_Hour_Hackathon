@@ -111,6 +111,7 @@ function showWord(){
 
   randomWord = random[Math.floor(Math.random() * random.length)]
     $('#word').show();
+    $('.showWord').hide();
     $('#wordText').html(randomWord);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
