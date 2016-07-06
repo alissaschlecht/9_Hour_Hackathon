@@ -143,30 +143,44 @@ function timer(){
   }
 }
 
+var teamOne = null;
+var teamTwo = null;
 
-var teamScore = 0;
+function getTeamNames(){
 
-function scoreTracker(){
+  $('#getNames').click(function(){
 
-  console.log(currentSeconds);
+     teamOne = $('#name1').val();
+     teamTwo = $('#name2').val();
 
+  })
 }
 
-var team = 1;
-function teamTurn(){
+  var team = 1;
+  function teamTurn(){
 
-  if (team === 1){
-    team = 2;
-  }
-  else {
-    team = 1;
+    $('#getNames').click(function(){
+
+      if (team === 1){
+        team = 2;
+        $('.teamName').html(teamTwo);
+      }
+      else {
+        team = 1;
+        $('.teamName').html(teamOne);
+      }
+
+    });
+
   }
 
-}
 
 hideAll();
 showWord();
 hideWord();
 start();
+getTeamNames();
+teamTurn();
+
 
 }

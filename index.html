@@ -11,6 +11,10 @@
 <body onload="init()">
   <div id="container" style="text-align: center;">
 
+  <label>Team One Name:</label><input id="name1" type ="text"/><br/>
+  <label>Team Two Name:</label><input id="name2" type ="text"/><br/>
+  <h1 id="teamName"></h1>
+  <input type="button" id="getNames" value="Submit">
 
   <div class="col-md-2">
   <button class="showWord">SHOW ME WORD</button><br/>
@@ -25,14 +29,13 @@
 
   <div id="drawPad" class="col-md-8" style="text-align: center;">
     <h1>Dalissionary</h1>
-    <h2>Team Name</h2>
+    <h2 class="teamName">Team</h2>
 
 
     <div><canvas id="canvas" width="400px" height="500" style="border: 1px black solid;"></canvas></div>
     <input type="button" value="draw" onclick="use_tool('draw');" />
     <input type="button" value="erase" onclick="use_tool('erase');" />
   </div>
-
 
   <div class="col-md-2">
     <div id="timerText"></div>
