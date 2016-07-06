@@ -120,16 +120,19 @@ function hideWord(){
 function start(){
   $('.start').click(function(){
     $('.start').hide();
+    secs = 30;
     timer();
   })
 }
 
+//=================================TIMER=========================//
 var secs =  30;
 var currentSeconds = 0;
 
 function timer(){
 
   Decrement();
+  scoreTracker();
 
   function Decrement() {
       currentMinutes = Math.floor(secs / 60);
@@ -138,31 +141,40 @@ function timer(){
       secs--;
       document.getElementById("timerText").innerHTML = "0:"+currentSeconds;
       if(secs !== -1) setTimeout(Decrement,1000);
-      console.log(currentSeconds);
-      scoreTracker();
+  
   }
 }
 
+//===============================TEAM SCORES===============================//
 
-var teamScore = 0;
+var currentTeam = 0;
+        var teams = [
+        {
+          name: "Team 1",
+          score:0
+        },{
+          name: "Team 2",
+          score:0
+        }
+      ];
 
 function scoreTracker(){
-
-  console.log(currentSeconds);
-
+    $("#stopTimer").click(function(){
+       // document.getElementById("displayScore").innerHTML = "You scored: " + currentSeconds;
+       teamTurn();
+      secs = 0;
+  })
+ 
 }
 
-var team = 1;
-function teamTurn(){
+ function teamTurn(){
 
-  if (team === 1){
-    team = 2;
-  }
-  else {
-    team = 1;
-  }
 
-}
+     teams[currentTeam].score++;
+     currentTeam = currentTeam ? 0 : 1;
+     $('#teamName').html(teams[currentTeam].name);
+
+ }
 
 hideAll();
 showWord();
